@@ -35,9 +35,11 @@ public class Project_Main {
 			
 			do {
 				// This is introductory message and options for the User to begin
-				System.out.println("\nWelcome to the Inventory Control System!!  ");
+				System.out.println("\n=============================================================================");
+				System.out.println("               Welcome to the Inventory Control System!!  ");
 				System.out.println("=============================================================================\n");
-				System.out.println("Choose one of the following to perform a database interaction: \n");
+				System.out.println("Choose one of the following to perform a database interaction:  ");
+				System.out.println("-----------------------------------------------------------------------------\n");
 				System.out.println("Press A or a to Add a New Sale Item to the database:  ");
 				System.out.println("Press D or d to Delete a Sale Item from the database:  ");
 				System.out.println("Press U or u to Update a Sale Item in the database:  ");
@@ -45,7 +47,7 @@ public class Project_Main {
 				System.out.println("Press G or g to Get a Sale Item Quantity report from the database:  ");
 				System.out.println("Press S or s to Get a Report on Sale Item by Name:  ");
 				System.out.println("Press Q or q to Quit the Inventory Control System at any time:  ");
-				System.out.println("*****************************************************************************\n");
+				System.out.println("\n*****************************************************************************\n");
 				
 				// get input from user
 				Scanner userInput = new Scanner(System.in);
@@ -53,6 +55,9 @@ public class Project_Main {
 				
 				// If A/a is chosen then the following is performed
 				if (option == 'A' || option == 'a') {
+					System.out.println("\n=============================================================================");
+					System.out.println("               Welcome to Add Sale Items to the database!!  ");
+					System.out.println("=============================================================================\n");
 					System.out.println("\nEnter the Name of the New Sale Item here:  \n");
 					String itemName = userInput.nextLine();
 					System.out.println("\nEnter the Description of the New Sale Item here:  \n");
@@ -65,8 +70,9 @@ public class Project_Main {
 					double list = Double.parseDouble(listPrice);
 					AddSale_item(itemName, itemDescription, quant, list);
 					
+					System.out.println("\n----------------------------------------------------------------------------");
 					System.out.println("\nThe Sale Item Added =  " + itemName + " \n");
-					System.out.println("\nThe Sale Item Description = " + itemDescription + " \n");
+					System.out.println("The Sale Item Description = " + itemDescription + " \n");
 					System.out.println("The Quantity = " + quant + " \n");
 					System.out.println("The List Price = $" + list + " \n");
 					System.out.println("*****************************************************************************\n");
@@ -74,35 +80,44 @@ public class Project_Main {
 				
 				// If R/r is chosen then the following is performed
 				if (option == 'R' || option == 'r') {
-					System.out.println("\nThe Report on All Sale Items in the database are Displayed below:  ");
-					System.out.println("=============================================================================\n");
+					System.out.println("\n======================================================================================");
+					System.out.println("        The Report on All Sale Items in the database are Displayed below:  ");
+					System.out.println("======================================================================================\n");
 					System.out.println("Sale ItemId" + "\t" + "Item Name" + "\t" + "Item Description" + "\t" + "Quantity" + "\t" + "List Price\n");
 					ReportSale_item(null);
-					System.out.println("*****************************************************************************\n");
+					System.out.println("***************************************************************************************\n");
 				}
 				
 				// If D/d is chosen then the following is performed
 				if (option == 'D' || option == 'd') {
-					System.out.println("\nEnter the ID number for the Sale Item to Delete from the database:  ");
+					System.out.println("\n=============================================================================");
+					System.out.println("              Welcome to Delete Sale Items from the database!!  ");
 					System.out.println("=============================================================================\n");
+					System.out.println("\nEnter the ID number for the Sale Item to Delete from the database:  ");
+					
 					String sale_itemID = userInput.nextLine();
 					int id = Integer.parseInt(sale_itemID);
 					RemoveSale_item(sale_itemID, id);
-					System.out.println("\nThe complete record for ID number " + id + " was Deleted from database. \n");
+					System.out.println("\n-----------------------------------------------------------------------------\n");
+					System.out.println("   The complete record for the Sale Item ID number  " + id + "  was Deleted from database. \n");
 					System.out.println("*****************************************************************************\n");
 				}
 								
 				// If G/g is chosen then the following is performed
 				if (option == 'G' || option == 'g') {
-					System.out.println("\nThe Sale Item Quantity - re-order report (less than 10 items) - from the database:  ");
-					System.out.println("=============================================================================\n");
+					System.out.println("\n======================================================================================");
+					System.out.println("  The Sale Item Quantity - Re-order Report (less than 15 items) - from the database: ");
+					System.out.println("======================================================================================\n");
 					System.out.println("Sale ItemId" + "\t" + "Item Name" + "\t" + "Quantity" + "\n");
 					GetSale_item(null);
-					System.out.println("*****************************************************************************\n");
+					System.out.println("**************************************************************************************\n");
 				}
 				
 				// If U/u is chosen then the following is performed
 				if (option == 'U' || option == 'u') {
+					System.out.println("\n=============================================================================");
+					System.out.println("              Welcome to Update Sale Items from the database!!  ");
+					System.out.println("=============================================================================\n");
 					System.out.println("\nEnter the ID number of the Sale item to Update:  \n");
 					System.out.println("=============================================================================\n");
 					String sale_itemID = userInput.nextLine();
@@ -123,21 +138,25 @@ public class Project_Main {
 				}
 								
 				// If S/s is chosen then the following is performed 
-				// Not working correctly yet
 				if (option == 'S' || option == 's') {
-					System.out.println("\nThe details for Sale item name entered are displayed below:  ");
-					System.out.println("=============================================================================\n");
-					System.out.println("\nEnter the Name of the Sale item to View:  \n");
-					String itemName = userInput.nextLine();
-					GetItem(itemName);
-					System.out.println("test line");
-					System.out.println("*****************************************************************************\n");
+					System.out.println("\n=========================================================================================");
+					System.out.println("        The details for Sale item are displayed below:  ");
+					System.out.println("=========================================================================================\n");
+					System.out.println("\nEnter the Sale Item ID number to View item details:  \n");
+					String sale_itemID = userInput.nextLine();
+					int id = Integer.parseInt(sale_itemID);
+					System.out.println("\n-----------------------------------------------------------------------------------------\n");
+					System.out.println("\nSale ItemId" + "\t" + "Item Name" + "\t" + "Item Description" + "\t" + "Quantity" + "\t" + "List Price\n");
+					GetItem(sale_itemID, id);
+					System.out.println("test line  "+id+"\ntimestamp?");
+					System.out.println("*****************************************************************************************\n");
 				}
 				
 				// If Q/q is chosen then
 				if (option == 'Q' || option == 'q') {
-					System.out.println("\nThank you for using the Inventory Control System!!  " +
-							"\nHave a Great Day!!  ");
+					System.out.println("\n=============================================================================");
+					System.out.println("          Thank you for using the Inventory Control System!!  \n");
+					System.out.println("                          Have a Great Day!!  \n");
 					System.out.println("*****************************************************************************\n");
 				}
 				
@@ -160,7 +179,7 @@ public class Project_Main {
 			sql.setDouble(4, list);
 			
 			sql.executeUpdate();
-			System.out.println(itemName);
+			
 			System.out.println("\nThe new item was Added to the database Successfully!!  ");
 			conn.close();
 		}
@@ -176,7 +195,7 @@ public class Project_Main {
 				Statement stmt = conn.createStatement();
 				ResultSet sql = stmt.executeQuery(query);
 				while(sql.next()) {					
-					System.err.println(sql.getString(1) + "\t" + sql.getString(2) + "\t" + sql.getString(3) + "\t " + sql.getString(4) + "\t" + sql.getString(5) + "\n");
+					System.err.println("   "+sql.getString(1) + "            " + sql.getString(2) + "         " + sql.getString(3) + "            " + sql.getString(4) + "             " + sql.getString(5) + "\n");
 					System.out.println();
 			}
 				
@@ -199,7 +218,6 @@ public class Project_Main {
 			sql.setInt(1, id);
 			
 			sql.executeUpdate();
-			System.out.println(sale_itemID);
 			System.out.println("\nThe Sale item was Deleted from the database Successfully!!  ");
 			conn.close();
 		}
@@ -208,13 +226,13 @@ public class Project_Main {
 		public static void GetSale_item(String name) throws SQLException {
 			// Connects to database
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjavacourseproject", "root", "R00T23");
-			String query = "select * from sale_item where quantity < 10";
+			String query = "select * from sale_item where quantity < 15";
 			
 			try {
 				Statement stmt = conn.createStatement();
 				ResultSet sql = stmt.executeQuery(query);
 				while(sql.next()) {
-					System.err.println(sql.getString(1) + "\t" + sql.getString(2) + "\t" + sql.getString(4) + "\n");
+					System.err.println("   "+sql.getString(1) + "            " + sql.getString(2) + "          " + sql.getString(4) + "\n");
 					System.out.println();
 				}
 		} catch (SQLException e) {
@@ -226,26 +244,20 @@ public class Project_Main {
 		
 		// Select a Sale item to display from the database with S/s option
 		// not working correctly yet
-		public static void GetItem(String name) throws SQLException {
-			Sale_item itemName = new Sale_item(name);
-			sale_item.add(itemName);
+		public static void GetItem(String name, Integer id) throws SQLException {
 			
 			// Connects to database
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/advjavacourseproject", "root", "R00T23");
-			String query = "select * from sale_item where itemName =?";
+			String query = "select * from sale_item where sale_itemID = ?";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setInt(1, id);
+			ResultSet sql = stmt.executeQuery();
 			
-			try {
-				Statement stmt = conn.createStatement();
-				ResultSet sql = stmt.executeQuery(query);
-				while(sql.next()) {					
-					System.err.println(sql.getString(1) + "\t" + sql.getString(2) + "\t" + sql.getString(3) + "\t " + sql.getString(4) + "\t" + sql.getString(5) + "\n");
-					System.out.println();
+			while(sql.next()) {
+				System.err.println("   "+sql.getString(1) + "            " + sql.getString(2) + "         " + sql.getString(3) + "            " + sql.getString(4) + "             " + sql.getString(5) + "\n");
 			}
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-			conn.close();
+				System.out.println();
+				conn.close();
 		}
 		
 		
