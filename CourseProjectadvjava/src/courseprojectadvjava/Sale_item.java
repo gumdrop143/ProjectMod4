@@ -1,6 +1,7 @@
-/* Module 4 Course Project
+/* Module 5 Course Project
  * written by: Jennifer Grant
- * June 05, 2022
+ * June 12, 2022
+ * COP3805C Advanced Java Programming
  * 
  */
 

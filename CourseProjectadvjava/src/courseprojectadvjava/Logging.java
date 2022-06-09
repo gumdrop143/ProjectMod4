@@ -1,3 +1,10 @@
+/* Module 05 Course Project
+ * written by: Jennifer Grant
+ * June 12, 2022
+ * COP3805C Advanced Java Programming
+ * 
+ */
+
 package courseprojectadvjava;
 
 import java.io.FileInputStream;
@@ -10,6 +17,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+// Logging class create object
 public class Logging {
 
 		private final static Logger LOGGER = Logger.getLogger(Logging.class.getName());

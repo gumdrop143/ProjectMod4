@@ -1,6 +1,7 @@
-/* Module 4 Course Project
+/* Module 5 Course Project
  * written by: Jennifer Grant
- * June 05, 2022
+ * June 12, 2022
+ * COP3805C Advanced Java Programming
  * 
  */
 
@@ -12,19 +13,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Project_Main {
-
+		// Instantiate logger method from another class
 		private final static Logger LOGGER = Logger.getLogger(Logging.class.getName());
 		public static void Logger() {
 			LOGGER.info("\nHello!\nThe logger is run from the Logging Class \n");
 		}
 		
 		// All of the required code to perform the interaction
-		// fake D.B this will be back-end DB
 		// Create array lists for each table in DB
 		public static ArrayList<Sale_item> sale_item = new ArrayList<Sale_item>();
 		
@@ -34,7 +36,7 @@ public class Project_Main {
 			char option = 'q';
 			
 			do {
-				// This is introductory message and options for the User to begin
+				// This is introductory message and options menu for the User to begin
 				System.out.println("\n=============================================================================");
 				System.out.println("               Welcome to the Inventory Control System!!  ");
 				System.out.println("=============================================================================\n");
@@ -58,6 +60,7 @@ public class Project_Main {
 					System.out.println("\n=============================================================================");
 					System.out.println("               Welcome to Add Sale Items to the database!!  ");
 					System.out.println("=============================================================================\n");
+					// Prompt user for Input
 					System.out.println("\nEnter the Name of the New Sale Item here:  \n");
 					String itemName = userInput.nextLine();
 					System.out.println("\nEnter the Description of the New Sale Item here:  \n");
@@ -68,6 +71,7 @@ public class Project_Main {
 					System.out.println("\nEnter the List Price of the New Sale Item here:  \n");
 					String listPrice = userInput.nextLine();
 					double list = Double.parseDouble(listPrice);
+					// Method to add items to array list
 					AddSale_item(itemName, itemDescription, quant, list);
 					
 					System.out.println("\n----------------------------------------------------------------------------");
@@ -84,23 +88,30 @@ public class Project_Main {
 					System.out.println("        The Report on All Sale Items in the database are Displayed below:  ");
 					System.out.println("======================================================================================\n");
 					System.out.println("Sale ItemId" + "\t" + "Item Name" + "\t" + "Item Description" + "\t" + "Quantity" + "\t" + "List Price\n");
+					// Method to perform report actions
 					ReportSale_item(null);
+					// Method to print current date and time
+					LocalDateTime timestamp = LocalDateTime.now();
+					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
+					String fView = timestamp.format(ftimestamp);
+					System.out.println("\nReport Created:  " + fView);
 					System.out.println("***************************************************************************************\n");
 				}
 				
 				// If D/d is chosen then the following is performed
 				if (option == 'D' || option == 'd') {
-					System.out.println("\n=============================================================================");
+					System.out.println("\n=========================================================================================");
 					System.out.println("              Welcome to Delete Sale Items from the database!!  ");
-					System.out.println("=============================================================================\n");
+					System.out.println("=========================================================================================\n");
+					// Prompts user for Input
 					System.out.println("\nEnter the ID number for the Sale Item to Delete from the database:  ");
-					
 					String sale_itemID = userInput.nextLine();
 					int id = Integer.parseInt(sale_itemID);
+					// Method to perform delete actions
 					RemoveSale_item(sale_itemID, id);
-					System.out.println("\n-----------------------------------------------------------------------------\n");
-					System.out.println("   The complete record for the Sale Item ID number  " + id + "  was Deleted from database. \n");
-					System.out.println("*****************************************************************************\n");
+					System.out.println("\n---------------------------------------------------------------------------------------\n");
+					System.out.println(" The complete record for the Sale Item ID number  " + id + "  was Deleted from database. \n");
+					System.out.println("*****************************************************************************************\n");
 				}
 								
 				// If G/g is chosen then the following is performed
@@ -109,7 +120,13 @@ public class Project_Main {
 					System.out.println("  The Sale Item Quantity - Re-order Report (less than 15 items) - from the database: ");
 					System.out.println("======================================================================================\n");
 					System.out.println("Sale ItemId" + "\t" + "Item Name" + "\t" + "Quantity" + "\n");
+					// Method to perform Get actions
 					GetSale_item(null);
+					// Method to print current date and time
+					LocalDateTime timestamp = LocalDateTime.now();
+					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
+					String fView = timestamp.format(ftimestamp);
+					System.out.println("\nReport Created:  " + fView);
 					System.out.println("**************************************************************************************\n");
 				}
 				
@@ -118,10 +135,12 @@ public class Project_Main {
 					System.out.println("\n=============================================================================");
 					System.out.println("              Welcome to Update Sale Items from the database!!  ");
 					System.out.println("=============================================================================\n");
+					// Prompts user for Input to choose an item
 					System.out.println("\nEnter the ID number of the Sale item to Update:  \n");
-					System.out.println("=============================================================================\n");
+					System.out.println("-----------------------------------------------------------------------------\n");
 					String sale_itemID = userInput.nextLine();
 					int id = Integer.parseInt(sale_itemID);
+					// Prompts user Input for updates to be performed
 					System.out.println("\nEnter the Name of the Sale Item here:  \n");
 					String itemName = userInput.nextLine();
 					System.out.println("\nEnter the Description of the Sale Item here:  \n");
@@ -132,6 +151,7 @@ public class Project_Main {
 					System.out.println("\nEnter the List Price of the Sale Item here:  \n");
 					String listPrice = userInput.nextLine();
 					double list = Double.parseDouble(listPrice);
+					// Method to perform Update actions
 					UpdateSale_item(itemName, itemDescription, id, quant, list);
 					System.out.println();
 					System.out.println("*****************************************************************************\n");
@@ -142,17 +162,23 @@ public class Project_Main {
 					System.out.println("\n=========================================================================================");
 					System.out.println("        The details for Sale item are displayed below:  ");
 					System.out.println("=========================================================================================\n");
+					// Prompts user Input to choose an item by ID number to view report on item
 					System.out.println("\nEnter the Sale Item ID number to View item details:  \n");
 					String sale_itemID = userInput.nextLine();
 					int id = Integer.parseInt(sale_itemID);
 					System.out.println("\n-----------------------------------------------------------------------------------------\n");
 					System.out.println("\nSale ItemId" + "\t" + "Item Name" + "\t" + "Item Description" + "\t" + "Quantity" + "\t" + "List Price\n");
+					// Method to perform Select actions
 					GetItem(sale_itemID, id);
-					System.out.println("test line  "+id+"\ntimestamp?");
+					// Method to print current date and time
+					LocalDateTime timestamp = LocalDateTime.now();
+					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
+					String fView = timestamp.format(ftimestamp);
+					System.out.println("\nReport Created:  " + fView);
 					System.out.println("*****************************************************************************************\n");
 				}
 				
-				// If Q/q is chosen then
+				// If Q/q is chosen then the program will close and display goodbye message
 				if (option == 'Q' || option == 'q') {
 					System.out.println("\n=============================================================================");
 					System.out.println("          Thank you for using the Inventory Control System!!  \n");
@@ -160,7 +186,7 @@ public class Project_Main {
 					System.out.println("*****************************************************************************\n");
 				}
 				
-				} while (option != 'q');
+				} while (option != 'q');    // end do-while loop
 			
 		}
 		
@@ -243,7 +269,6 @@ public class Project_Main {
 
 		
 		// Select a Sale item to display from the database with S/s option
-		// not working correctly yet
 		public static void GetItem(String name, Integer id) throws SQLException {
 			
 			// Connects to database
