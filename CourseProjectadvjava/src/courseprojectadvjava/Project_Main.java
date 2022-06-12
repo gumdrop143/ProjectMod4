@@ -1,6 +1,6 @@
 /* Module 5 Course Project
  * written by: Jennifer Grant
- * June 12, 2022
+ * June 17, 2022
  * COP3805C Advanced Java Programming
  * 
  */
@@ -92,7 +92,7 @@ public class Project_Main {
 					ReportSale_item(null);
 					// Method to print current date and time
 					LocalDateTime timestamp = LocalDateTime.now();
-					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
+					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd    HH:mm:ss");
 					String fView = timestamp.format(ftimestamp);
 					System.out.println("\nReport Created:  " + fView);
 					System.out.println("***************************************************************************************\n");
@@ -124,7 +124,7 @@ public class Project_Main {
 					GetSale_item(null);
 					// Method to print current date and time
 					LocalDateTime timestamp = LocalDateTime.now();
-					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
+					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd    HH:mm:ss");
 					String fView = timestamp.format(ftimestamp);
 					System.out.println("\nReport Created:  " + fView);
 					System.out.println("**************************************************************************************\n");
@@ -172,7 +172,7 @@ public class Project_Main {
 					GetItem(sale_itemID, id);
 					// Method to print current date and time
 					LocalDateTime timestamp = LocalDateTime.now();
-					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("dd-MM-yyyy    HH:mm:ss");
+					DateTimeFormatter ftimestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd    HH:mm:ss");
 					String fView = timestamp.format(ftimestamp);
 					System.out.println("\nReport Created:  " + fView);
 					System.out.println("*****************************************************************************************\n");
@@ -222,7 +222,6 @@ public class Project_Main {
 				ResultSet sql = stmt.executeQuery(query);
 				while(sql.next()) {					
 					System.err.println("   "+sql.getString(1) + "            " + sql.getString(2) + "         " + sql.getString(3) + "            " + sql.getString(4) + "             " + sql.getString(5) + "\n");
-					System.out.println();
 			}
 				
 		} catch (SQLException e) {
@@ -259,7 +258,6 @@ public class Project_Main {
 				ResultSet sql = stmt.executeQuery(query);
 				while(sql.next()) {
 					System.err.println("   "+sql.getString(1) + "            " + sql.getString(2) + "          " + sql.getString(4) + "\n");
-					System.out.println();
 				}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -281,7 +279,6 @@ public class Project_Main {
 			while(sql.next()) {
 				System.err.println("   "+sql.getString(1) + "            " + sql.getString(2) + "         " + sql.getString(3) + "            " + sql.getString(4) + "             " + sql.getString(5) + "\n");
 			}
-				System.out.println();
 				conn.close();
 		}
 		
